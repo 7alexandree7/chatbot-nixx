@@ -16,13 +16,14 @@ client.on('qr', (qr) => {
 
 client.on('ready', () => {
     console.log('Client is ready!');
+    console.log('Pronto...')
 });
 
 
 
 client.on('message', msg => {
 
-    const imagePath  = path.join(__dirname, './425716962_7377155459008583_8991209300758612211_n.png');
+    const imagePath  = path.join(__dirname, './ninasuporte.png');
     const media = MessageMedia.fromFilePath(imagePath);
     client.sendMessage(msg.from, media, { sendMediaAsDocument: false });
 
