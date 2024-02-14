@@ -1,13 +1,11 @@
-2024/02/14-15:39:08.210 5fa8 Reusing MANIFEST C:\Users\Guest\Documents\GitHub\chatbot-nixx\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2024/02/14-15:39:08.210 5fa8 Recovering log #722
-2024/02/14-15:39:08.319 5fa8 Reusing old log C:\Users\Guest\Documents\GitHub\chatbot-nixx\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000722.log 
-2024/02/14-15:39:49.365 2848 Level-0 table #727: started
-2024/02/14-15:39:49.399 2848 Level-0 table #727: 1370081 bytes OK
-2024/02/14-15:39:49.403 2848 Delete type=0 #722
-2024/02/14-15:39:49.496 5fa8 Compacting 1@1 + 1@2 files
-2024/02/14-15:39:49.618 5fa8 Generated table #728@1: 54910 keys, 2239227 bytes
-2024/02/14-15:39:49.636 5fa8 Generated table #729@1: 8928 keys, 152892 bytes
-2024/02/14-15:39:49.636 5fa8 Compacted 1@1 + 1@2 files => 2392119 bytes
-2024/02/14-15:39:49.639 5fa8 compacted to: files[ 0 0 2 0 0 0 0 ]
-2024/02/14-15:39:49.639 5fa8 Delete type=2 #724
-2024/02/14-15:39:49.639 5fa8 Delete type=2 #727
+2024/02/14-18:18:35.550 3d44 Reusing MANIFEST C:\Users\Guest\Documents\GitHub\chatbot-nixx\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2024/02/14-18:18:35.551 3d44 Recovering log #760
+2024/02/14-18:18:35.654 3d44 Reusing old log C:\Users\Guest\Documents\GitHub\chatbot-nixx\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000760.log 
+2024/02/14-18:20:44.317 5f34 Level-0 table #766: started
+2024/02/14-18:20:44.348 5f34 Level-0 table #766: 1348877 bytes OK
+2024/02/14-18:20:44.351 5f34 Delete type=0 #760
+2024/02/14-18:20:44.905 3224 Compacting 1@1 + 2@2 files
+2024/02/14-18:20:45.069 3224 Generated table #767@1: 52177 keys, 2313444 bytes
+2024/02/14-18:20:45.216 3224 Generated table #768@1: 54361 keys, 1764117 bytes
+2024/02/14-18:20:45.217 3224 Compacted 1@1 + 2@2 files => 4077561 bytes
+2024/02/14-18:20:45.219 3224 compacted to: files[ 0 0 2 0 0 0 0 ]

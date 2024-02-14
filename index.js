@@ -3,12 +3,16 @@ const qrcode = require('qrcode-terminal');
 const path = require('path');
 
 
+
 const client = new Client({
     authStrategy: new LocalAuth()
 });
 
 
+
+
 let welcomeSent = {};
+let typingTimer;
 
 
 client.on('qr', (qr) => {
@@ -25,6 +29,7 @@ client.on('ready', () => {
 
 
 client.on('message', async msg => {
+
     if (!welcomeSent[msg.from]) {
         welcomeSent[msg.from] = true;
         const imagePath = path.join(__dirname, './ninasuporte.png');
@@ -45,6 +50,7 @@ client.on('message', async msg => {
 Por favor, responda com o número correspondente à sua consulta. Se preferir, digite "Outro" para falar sobre um assunto não listado.
 
 💬 Estou aqui para ajudar!
+
         `);
     } else {
         // Se já enviou a mensagem de boas-vindas, trata a resposta do usuário
@@ -52,11 +58,12 @@ Por favor, responda com o número correspondente à sua consulta. Se preferir, d
     }
 });
 
-const handleUserResponse = async (msg) => {
 
+const handleUserResponse = async (msg) => {
     const response = msg.body;
 
     if (!isNaN(response)) {
+
         switch (response) {
             case '1':
                 await client.sendMessage(msg.from, 'Você escolheu a opção 1: Problemas técnicos ou erros no aplicativo.');
@@ -91,19 +98,30 @@ const handleUserResponse = async (msg) => {
                 await client.sendMessage(msg.from, 'Você escolheu a opção 5: Falar diretamente com o suporte Nix.\nVocê pode começar a conversa agora!');
                 await client.sendMessage(msg.from, 'Entendemos sua questão e já estamos cuidando dela com toda a atenção. Fique tranquilo, sua solicitação está em boas mãos e será resolvida o mais breve possível. ');
                 await client.sendMessage(msg.from, 'Agradecemos pela sua paciência e confiança em nosso suporte.');
-                client.off('message', handleUserResponse);
+                
+
+                // Lidar com o diálogo do cliente
+                client.on('message', async msg => {
+                    if (msg.body.toLowerCase() === 'sair') {
+                        await client.sendMessage(msg.from, 'A conversa foi encerrada. Obrigado por entrar em contato conosco.');
+                        client.removeListener('message', handleUserResponse);
+                        clearTimeout(typingTimer); // Cancelar o temporizador se o cliente encerrar a conversa
+                    } else {
+                        // Aqui você pode lidar com as mensagens enviadas pelo cliente
+                        await client.sendMessage(msg.from, 'Você disse: ' + msg.body);
+                    }
+                    
+                });
+                
                 break;
 
 
             default:
-                await client.sendMessage(msg.from, 'Opção inválida. Por favor, responda com um número de 1 a 5.');
-                await client.sendMessage(msg.from, 'Ou se preferir entre em contato direto comigo, apertando o numero 5. Te vejo la 🧡');
-                break;
+                if (typingTimer) clearTimeout(typingTimer); // Limpar o temporizador se houver qualquer entrada
+                await client.sendMessage(msg.from, 'Opção inválida. Por favor, responda com um número')
+            }
         }
-    } else {
-        await client.sendMessage(msg.from, 'Opção inválida. Por favor, responda com um número de 1 a 5.');
     }
-};
 
 client.initialize();
-
+        
