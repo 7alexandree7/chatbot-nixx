@@ -1,3 +1,2 @@
-2024/02/11-21:57:29.873 3134 Reusing MANIFEST C:\GitHub\chatbot-nixx\.wwebjs_auth\session\Default\shared_proto_db/MANIFEST-000001
-2024/02/11-21:57:29.876 3134 Recovering log #3
-2024/02/11-21:57:29.876 3134 Reusing old log C:\GitHub\chatbot-nixx\.wwebjs_auth\session\Default\shared_proto_db/000003.log 
+2024/02/14-14:24:26.567 4d68 Creating DB C:\Users\Guest\Documents\GitHub\chatbot-nixx\.wwebjs_auth\session\Default\shared_proto_db since it was missing.
+2024/02/14-14:24:26.580 4d68 Reusing MANIFEST C:\Users\Guest\Documents\GitHub\chatbot-nixx\.wwebjs_auth\session\Default\shared_proto_db/MANIFEST-000001

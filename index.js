@@ -8,8 +8,7 @@ const client = new Client({
 });
 
 
-
-let welcomeSent = {}; // Objeto para rastrear se a mensagem de boas-vindas já foi enviada para cada número
+let welcomeSent = {};
 
 
 client.on('qr', (qr) => {
@@ -26,7 +25,6 @@ client.on('ready', () => {
 
 
 client.on('message', async msg => {
-
     if (!welcomeSent[msg.from]) {
         welcomeSent[msg.from] = true;
         const imagePath = path.join(__dirname, './ninasuporte.png');
@@ -48,45 +46,58 @@ Por favor, responda com o número correspondente à sua consulta. Se preferir, d
 
 💬 Estou aqui para ajudar!
         `);
+    } else {
+        // Se já enviou a mensagem de boas-vindas, trata a resposta do usuário
+        handleUserResponse(msg);
     }
 });
 
 const handleUserResponse = async (msg) => {
 
     const response = msg.body;
-    if (!welcomeSent[msg.from]) {
-        return;
-    }
 
     if (!isNaN(response)) {
-
         switch (response) {
             case '1':
                 await client.sendMessage(msg.from, 'Você escolheu a opção 1: Problemas técnicos ou erros no aplicativo.');
+                await client.sendMessage(msg.from, 'Se sua dúvida não foi resolvida, por favor digite 5 para falar diretamente com o suporte.');
                 break;
+
 
             case '2':
                 await client.sendMessage(msg.from, 'Você escolheu a opção 2: Dúvidas sobre funcionalidades e uso do aplicativo.');
+                await client.sendMessage(msg.from, 'Se sua dúvida não foi resolvida, por favor digite 5 para falar diretamente com o suporte.');
                 break;
+
 
             case '3':
                 await client.sendMessage(msg.from, 'Você escolheu a opção 3: Questões relacionadas a pagamentos e assinaturas.');
+                await client.sendMessage(msg.from, 'Se sua dúvida não foi resolvida, por favor digite 5 para falar diretamente com o suporte.');
                 break;
 
+
             case '4':
-                await client.sendMessage(msg.from, 'Você escolheu a opção 4: Tutorial sobre o nosso app.');
+                await client.sendMessage(msg.from, 'Você escolheu a opção 4: Tutorial sobre o nosso app ');  
+                await client.sendMessage(msg.from, 'Olá! 🫶🏻 Para acessar nosso tutorial, siga estas etapas simples: baixe o vídeo que enviamos como documento e assista no conforto do seu celular. ');  
+                await client.sendMessage(msg.from, 'É fácil e rápido! Se tiver alguma dúvida, estou à disposição para ajudar');  
+                await client.sendMessage(msg.from, 'Se sua dúvida não foi resolvida, por favor digite 5 para falar diretamente com o suporte.');  
+                const videoPath = path.join(__dirname, './Foda-se Versão Roblox Meme (360p).mp4');
+                const media = MessageMedia.fromFilePath(videoPath);
+                await client.sendMessage(msg.from, media, { sendMediaAsDocument: true });
                 break;
+
 
             case '5':
                 await client.sendMessage(msg.from, 'Você escolheu a opção 5: Falar diretamente com o suporte Nix.\nVocê pode começar a conversa agora!');
                 await client.sendMessage(msg.from, 'Entendemos sua questão e já estamos cuidando dela com toda a atenção. Fique tranquilo, sua solicitação está em boas mãos e será resolvida o mais breve possível. ');
                 await client.sendMessage(msg.from, 'Agradecemos pela sua paciência e confiança em nosso suporte.');
-                // Removendo o ouvinte de mensagem temporariamente para permitir a interação direta com o suporte
                 client.off('message', handleUserResponse);
                 break;
-                
+
+
             default:
                 await client.sendMessage(msg.from, 'Opção inválida. Por favor, responda com um número de 1 a 5.');
+                await client.sendMessage(msg.from, 'Ou se preferir entre em contato direto comigo, apertando o numero 5. Te vejo la 🧡');
                 break;
         }
     } else {
@@ -94,7 +105,5 @@ const handleUserResponse = async (msg) => {
     }
 };
 
-
-client.on('message', handleUserResponse);
-
 client.initialize();
+
